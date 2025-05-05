@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
 
-
 const todoSchema = new mongoose.Schema({
     text: {
         type: String,
         required: true,
     },
-    Completed: {
+    completed: {
         type: Boolean,
         default: false,
     },
 });
-
 
 const taskSchema = new mongoose.Schema({
     title: {
@@ -29,8 +27,8 @@ const taskSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Not Started', 'In Progress', 'Completed'],
-        default: 'Not Started',
+        enum: ['Pending', 'In Progress', 'Completed'],
+        default: 'Pending',
     },
     dueDate: {
         type: Date,
@@ -54,7 +52,5 @@ const taskSchema = new mongoose.Schema({
         default: 0,
     },
 }, { timestamps: true });
-
-
 
 module.exports = mongoose.model('Task', taskSchema);
