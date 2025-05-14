@@ -35,6 +35,15 @@ const Login = () => {
           type='text'
         
         />
+
+        <Input
+          value={passqword}
+          onChange={({target})=>setPassword(target.passqword)}
+          label='Password'
+          placeholder='min 8 Character'
+          type='password'
+        
+        />
       </form>
     </div>
    </AuthLayout>
