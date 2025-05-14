@@ -1,53 +1,62 @@
-import React, { useState } from 'react'
-import AuthLayout from '../../components/AuthLayout'
-import Input from '../../components/Inputs/Input'
-
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import AuthLayout from '../../components/AuthLayout';
+import Input from '../../components/Inputs/Input';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
-  
-  const [email,setEmail]=useState("");
-  const [passqword,setPassword]=useState("");
-  const [error,setError]=useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
 
-  const navigate=useNavigate();
-
-  const handleLogin=async(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-  }
+    // Your login logic will go here
+  };
 
   return (
-   <AuthLayout>
+    <AuthLayout>
+      <div className="lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center">
+        <h3 className="text-xl font-semibold text-black">Welcome Back</h3>
+        <p className="text-xs text-slate-700 mt-[5px] mb-6">
+          Please enter your details to log in
+        </p>
 
-    <div className='lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center'>
-      <h3 className='text-xl fond-semibold text-black'> Welcome Back</h3>
-      <p className='text-xs text-slate-700 mt-[5px] mb-6'>
-        Please Enter your details to log in
-      </p>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <Input
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            label="Email Address"
+            placeholder="john@example.com"
+            inputType="text"
+          />
 
-      <form onSubmit={handleLogin}>
-        <Input
-          value={email}
-          onChange={({target})=>setEmail(target.email)}
-          label='Email Address'
-          placeholder='jhon@example.com'
-          type='text'
-        
-        />
+          <Input
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            label="Password"
+            placeholder="Min 8 characters"
+            inputType="password"
+            isPassword={true}
+          />
 
-        <Input
-          value={passqword}
-          onChange={({target})=>setPassword(target.passqword)}
-          label='Password'
-          placeholder='min 8 Character'
-          type='password'
-        
-        />
-      </form>
-    </div>
-   </AuthLayout>
-  )
-}
+          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-export default Login
+          <button type="submit" className="btn-primary">
+            LOGIN
+          </button>
+
+          <p className="text-[13px] text-slate-800 mt-3">
+            Don't have an account?{" "}
+            <Link className="font-medium text-primary underline" to="/signup">
+              Sign Up
+            </Link>
+          </p>
+        </form>
+      </div>
+    </AuthLayout>
+  );
+};
+
+export default Login;
