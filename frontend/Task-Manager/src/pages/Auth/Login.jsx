@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AuthLayout from '../../components/AuthLayout';
 import Input from '../../components/Inputs/Input';
+import { validateEmail } from '../../utils/helper';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
@@ -12,7 +13,17 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Your login logic will go here
+    
+    if (!validateEmail(email)){
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    if(!password){
+      setError("Please enter the password");
+      return;
+    }
+    setError("");
   };
 
   return (
@@ -29,7 +40,7 @@ const Login = () => {
             onChange={({ target }) => setEmail(target.value)}
             label="Email Address"
             placeholder="john@example.com"
-            inputType="text"
+            type="text"
           />
 
           <Input
@@ -37,8 +48,7 @@ const Login = () => {
             onChange={({ target }) => setPassword(target.value)}
             label="Password"
             placeholder="Min 8 characters"
-            inputType="password"
-            isPassword={true}
+            type="password"
           />
 
           {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}

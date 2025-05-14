@@ -13,7 +13,7 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
   return (
     <div>
       <label className="text-[13px] text-slate-800 mb-1 block">{label}</label>
-      <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:border-primary transition">
+      <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:border-blue-600 transition">
         <input
           type={inputType}
           placeholder={placeholder}
@@ -22,23 +22,24 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
           onChange={onChange}
         />
         {isPassword && (
-          showPassword ? (
-            <FaRegEye
-              size={20}
-              className="text-primary cursor-pointer ml-2"
-              onClick={toggleShowPassword}
-            />
-          ) : (
-            <FaRegEyeSlash
-              size={20}
-              className="text-primary cursor-pointer ml-2"
-              onClick={toggleShowPassword}
-            />
-          )
+          <div className="ml-2">
+            {showPassword ? (
+              <FaRegEye
+                size={20}
+                className="text-black-600 cursor-pointer"
+                onClick={toggleShowPassword}
+              />
+            ) : (
+              <FaRegEyeSlash
+                size={20}
+                className="text-black-600 cursor-pointer"
+                onClick={toggleShowPassword}
+              />
+            )}
+          </div>
         )}
       </div>
     </div>
-
   );
 };
 
