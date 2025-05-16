@@ -16,10 +16,14 @@ import ManageUsers from './pages/Admin/ManageUsers';
 import UserDashboard from './pages/User/UserDashboard';
 import MyTasks from './pages/User/MyTasks';
 import ViewTaskDetails from './pages/User/ViewTaskDetails';
+import { UserProvider } from './context/userContext';
 
 
 const App = () => {
   return (
+    <UserProvider>
+
+    
     <div>
       <Router>
         <Routes>
@@ -45,6 +49,7 @@ const App = () => {
         </Routes>
       </Router> 
     </div>
+    </UserProvider>
   )
 }
 
